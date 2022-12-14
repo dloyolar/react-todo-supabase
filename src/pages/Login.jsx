@@ -1,19 +1,31 @@
+import { useEffect } from 'react';
 import { useState } from 'react';
-import { client } from '../supabase/client';
+import { useNavigate } from 'react-router-dom';
+import { supabase } from '../supabase/client';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const result = await client.auth.signInWithOtp({ email });
+      const result = await supabase.auth.signInWithOtp({ email });
       console.log(result);
     } catch (error) {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    async function getUser() {
+      const { data } = await supabase.auth.getUser();
+      if (data?.user) {
+        navigate('/');
+      }
+    }
+    getUser();
+  }, [navigate]);
 
   return (
     <div>

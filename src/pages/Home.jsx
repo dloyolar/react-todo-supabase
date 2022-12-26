@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { TaskForm } from '../components/TaskForm';
 import { supabase } from '../supabase/client';
 
 export const Home = () => {
@@ -19,6 +20,7 @@ export const Home = () => {
   return (
     <div>
       Home <button onClick={() => supabase.auth.signOut()}>Logout</button>
+      <TaskForm />
     </div>
   );
 };

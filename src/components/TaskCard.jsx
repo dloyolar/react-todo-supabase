@@ -1,8 +1,11 @@
 import React from 'react';
+import { useTasks } from '../context/TaskContext';
 
 export const TaskCard = ({ task }) => {
+  const { deleteTask } = useTasks();
+
   const handleDelete = () => {
-    alert('deleting');
+    deleteTask(task.id);
   };
 
   const handleToggleDone = () => {

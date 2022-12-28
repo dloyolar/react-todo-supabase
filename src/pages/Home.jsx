@@ -21,14 +21,17 @@ export const Home = () => {
   }, [navigate]);
 
   return (
-    <div>
-      Home <button onClick={() => supabase.auth.signOut()}>Logout</button>
-      <TaskForm />
-      <header>
-        <span>Task pending</span>
-        <button onClick={() => setShowTaskDone(!showTaskDone)}>Show Tasks Done</button>
-      </header>
-      <TaskList done={showTaskDone} />
+    <div className="row pt-4">
+      <div className="col-md-4 offset-md-4">
+        <TaskForm />
+        <header className="d-flex justify-content-between my-3">
+          <span className="h5">{showTaskDone ? 'Tasks Done' : 'Tasks to do'}</span>
+          <button className="btn btn-dark btn-sm" onClick={() => setShowTaskDone(!showTaskDone)}>
+            {showTaskDone ? 'Show tasks to do' : 'Show tasks done'}
+          </button>
+        </header>
+        <TaskList done={showTaskDone} />
+      </div>
     </div>
   );
 };

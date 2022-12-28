@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTasks } from '../context/TaskContext';
+import { TaskList } from './TaskList';
 
 export const TaskCard = ({ task }) => {
   const { deleteTask, updateTask } = useTasks();
@@ -13,12 +14,20 @@ export const TaskCard = ({ task }) => {
   };
 
   return (
-    <div>
-      <h1>{task.name}</h1>
-      <p>{JSON.stringify(task.done)}</p>
+    <div className="card card-body mb-2">
+      <h1 className="h5">{`${task.id}. ${task.name}`}</h1>
       <div>
-        <button onClick={() => handleDelete()}>Delete</button>
-        <button onClick={() => handleToggleDone()}>Done</button>
+        <p className={`badge ${task.done ? 'bg-success' : 'bg-warning'}`}>
+          {task.done ? 'Done ✅' : 'Not Done ❌'}
+        </p>
+      </div>
+      <div className="ms-auto">
+        <button className="btn btn-danger btn-sm me-1" onClick={() => handleDelete()}>
+          Delete
+        </button>
+        <button className="btn btn-secondary btn-sm" onClick={() => handleToggleDone()}>
+          Done
+        </button>
       </div>
     </div>
   );

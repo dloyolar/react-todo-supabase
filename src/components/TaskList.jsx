@@ -2,14 +2,14 @@ import { useEffect } from 'react';
 import { useTasks } from '../context/TaskContext';
 import { TaskCard } from './TaskCard';
 
-export const TaskList = () => {
+export const TaskList = ({ done = false }) => {
   const { tasks, getTasks, loading } = useTasks();
 
   console.log(tasks);
 
   useEffect(() => {
-    getTasks();
-  }, []);
+    getTasks(done);
+  }, [done]);
 
   const renderTasks = () => {
     if (loading) {

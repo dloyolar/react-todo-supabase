@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TaskForm } from '../components/TaskForm';
 import { TaskList } from '../components/TaskList';
@@ -7,6 +7,7 @@ import { supabase } from '../supabase/client';
 
 export const Home = () => {
   const navigate = useNavigate();
+  const [showTaskDone, setShowTaskDone] = useState(false);
 
   useEffect(() => {
     async function getUser() {
@@ -23,7 +24,11 @@ export const Home = () => {
     <div>
       Home <button onClick={() => supabase.auth.signOut()}>Logout</button>
       <TaskForm />
-      <TaskList />
+      <header>
+        <span>Task pending</span>
+        <button onClick={() => setShowTaskDone(!showTaskDone)}>Show Tasks Done</button>
+      </header>
+      <TaskList done={showTaskDone} />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 # React Supabase CRUD - TODO
 
-1. Clone repository
+1. Clone repository `git clone https://github.com/dloyolar/react-todo-supabase.git`
 2. run `pnpm install`
 3. Set ENV variables:
 
